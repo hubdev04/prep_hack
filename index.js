@@ -19,7 +19,7 @@
 
 const view=require("../node_modules/express/lib/view");
 const application=require("../node_modules/express/lib/application");
-
+const view=require("../node_modules/express/lib/view");
 
 
 
@@ -45,7 +45,7 @@ var app=express()
   
   
 app.use(bodyParser.json());
-const static_path=path.join(__dirname,"../public/HTML/");
+const static_path=path.join(__dirname,"../public/");
 app.use(express.static(static_path));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -94,11 +94,11 @@ app.post('/login',async(req,res)=>{
   
   
 app.get('/',function(req,res){
-// res.set({
-//     'Access-control-Allow-Origin': '*'
-//     });
- res.send('../public/HTML/main.index.html');
-}).listen(3000);
+res.set({
+    'Access-control-Allow-Origin': '*'
+    });
+return res.redirect('index.html');
+}).listen(3000)
   
   
 console.log("server listening at port 3000");
